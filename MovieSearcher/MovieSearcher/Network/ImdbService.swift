@@ -37,6 +37,24 @@ class ImdbService: ImdbServiceProtocol {
         }
     }
     
+    func getMovieDetail(with id:String, completion: @escaping (Result<MovieDetailResponse>) -> Void) {
+        request(Router.movieDetails(id: id)).responseData { (response) in
+            switch response.result {
+            case .success(let data):
+                let decoder = JSONDecoder()
+                do {
+                    let response = try decoder.decode(MovieDetailResponse.self, from: data)
+                    completion(.success(response))
+                }catch {
+                    completion(.failure(Error.serializationError(internal: error)))
+                }
+            case .failure(let error):
+                completion(.failure(Error.networkError(internal: error)))
+            }
+            
+        }
+    }
+    
 }
 
 
