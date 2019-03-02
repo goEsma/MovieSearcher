@@ -29,6 +29,8 @@
 		76C4E134222AE6DC00E1EDD4 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4E133222AE6DC00E1EDD4 /* ResourceLoader.swift */; };
 		76C4E136222AE72500E1EDD4 /* movie2.json in Resources */ = {isa = PBXBuildFile; fileRef = 76C4E135222AE72500E1EDD4 /* movie2.json */; };
 		76C4E138222AE73200E1EDD4 /* movie3.json in Resources */ = {isa = PBXBuildFile; fileRef = 76C4E137222AE73200E1EDD4 /* movie3.json */; };
+		76C4E13B222AE83900E1EDD4 /* MoviePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4E13A222AE83900E1EDD4 /* MoviePresentation.swift */; };
+		76C4E13E222AE86C00E1EDD4 /* MoviePresentation+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4E13D222AE86C00E1EDD4 /* MoviePresentation+API.swift */; };
 		CA6E213FB4EEF2F8080E6223 /* Pods_MovieSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8E5E996C91D3FBC511706D /* Pods_MovieSearcher.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		76C4E133222AE6DC00E1EDD4 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		76C4E135222AE72500E1EDD4 /* movie2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movie2.json; sourceTree = "<group>"; };
 		76C4E137222AE73200E1EDD4 /* movie3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movie3.json; sourceTree = "<group>"; };
+		76C4E13A222AE83900E1EDD4 /* MoviePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresentation.swift; sourceTree = "<group>"; };
+		76C4E13D222AE86C00E1EDD4 /* MoviePresentation+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviePresentation+API.swift"; sourceTree = "<group>"; };
 		8C8E5E996C91D3FBC511706D /* Pods_MovieSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B4DE53E83322CCA78F8D8 /* Pods_MovieSearcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7B8C3825D66764CE09F73E /* Pods_MovieSearcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +154,7 @@
 		76C4E0B7222A3E6500E1EDD4 /* MovieSearcher */ = {
 			isa = PBXGroup;
 			children = (
+				76C4E139222AE82100E1EDD4 /* Presentations */,
 				76C4E0ED222A441A00E1EDD4 /* App */,
 				76C4E10C222AA73100E1EDD4 /* Builders */,
 				76C4E0E6222A427400E1EDD4 /* Models */,
@@ -285,6 +290,24 @@
 				76C4E131222AE66000E1EDD4 /* MockImdbService.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		76C4E139222AE82100E1EDD4 /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				76C4E13C222AE85600E1EDD4 /* Extension */,
+				76C4E13A222AE83900E1EDD4 /* MoviePresentation.swift */,
+			);
+			name = Presentations;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		76C4E13C222AE85600E1EDD4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				76C4E13D222AE86C00E1EDD4 /* MoviePresentation+API.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		E3080B4C0CF056BE0D902815 /* Pods */ = {
@@ -533,12 +556,14 @@
 				76C4E0FD222A5C2C00E1EDD4 /* Router.swift in Sources */,
 				76C4E107222A972F00E1EDD4 /* AppContainer.swift in Sources */,
 				76C4E0B9222A3E6500E1EDD4 /* AppDelegate.swift in Sources */,
+				76C4E13E222AE86C00E1EDD4 /* MoviePresentation+API.swift in Sources */,
 				76C4E100222A5E5400E1EDD4 /* MovieListResponse.swift in Sources */,
 				76C4E10E222AA74300E1EDD4 /* MovieListBuilder.swift in Sources */,
 				76C4E109222A977300E1EDD4 /* AppRouter.swift in Sources */,
 				76C4E105222A67A300E1EDD4 /* Result.swift in Sources */,
 				76C4E10B222A986900E1EDD4 /* MovieListViewController.swift in Sources */,
 				76C4E0F6222A556F00E1EDD4 /* Movie.swift in Sources */,
+				76C4E13B222AE83900E1EDD4 /* MoviePresentation.swift in Sources */,
 				76C4E102222A5EE400E1EDD4 /* ImdbService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
