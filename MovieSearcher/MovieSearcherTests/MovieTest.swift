@@ -13,7 +13,7 @@ class MovieTest: XCTestCase {
 
     func testParsing () throws {
         let bundle = Bundle(for: MovieTest.self)
-        guard let url = bundle.url(forResource: "movie", withExtension: "json") else {
+        guard let url = bundle.url(forResource: "movie1", withExtension: "json") else {
             XCTFail("movie resouce cannot be found.")
             return
         }
