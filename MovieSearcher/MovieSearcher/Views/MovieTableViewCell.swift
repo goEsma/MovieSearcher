@@ -18,4 +18,10 @@ class MovieTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
     }
+    
+    func setup(movie: MoviePresentation) {
+        self.title.text = movie.title
+        self.type.text = movie.type
+        self.year.text = movie.year
+    }
 }
