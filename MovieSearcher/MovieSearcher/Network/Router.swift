@@ -17,11 +17,13 @@ public enum Router: URLRequestConvertible {
     }
     
     case movie(title:String, type:String?, year:String?)
-    
+    case movieDetails(id:String)
+
     var method:HTTPMethod {
         switch self {
-        case .movie:
+        case .movie, .movieDetails:
             return .get
+            
         }
     }
     
@@ -40,6 +42,9 @@ public enum Router: URLRequestConvertible {
             params["s"] = title as Any
             params["type"] = type ?? "" as Any
             params["y"] = year ?? "" as Any
+            
+        case .movieDetails(let id):
+            params["i"] = id as Any
         }
         return params
     }
