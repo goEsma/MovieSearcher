@@ -154,7 +154,7 @@
 		76C4E0B7222A3E6500E1EDD4 /* MovieSearcher */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E139222AE82100E1EDD4 /* Presentations */,
+				76C4E139222AE82100E1EDD4 /* Presentation */,
 				76C4E0ED222A441A00E1EDD4 /* App */,
 				76C4E10C222AA73100E1EDD4 /* Builders */,
 				76C4E0E6222A427400E1EDD4 /* Models */,
@@ -292,13 +292,13 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		76C4E139222AE82100E1EDD4 /* Presentations */ = {
+		76C4E139222AE82100E1EDD4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				76C4E13C222AE85600E1EDD4 /* Extension */,
 				76C4E13A222AE83900E1EDD4 /* MoviePresentation.swift */,
 			);
-			name = Presentations;
+			name = Presentation;
 			path = "New Group";
 			sourceTree = "<group>";
 		};
