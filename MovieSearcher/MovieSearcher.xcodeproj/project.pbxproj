@@ -136,7 +136,7 @@
 		76C4E0B7222A3E6500E1EDD4 /* MovieSearcher */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E0ED222A441A00E1EDD4 /* Application Delegate */,
+				76C4E0ED222A441A00E1EDD4 /* App */,
 				76C4E0E6222A427400E1EDD4 /* Models */,
 				76C4E0EC222A42E200E1EDD4 /* Network */,
 				76C4E0EB222A42DB00E1EDD4 /* Resources */,
@@ -226,12 +226,12 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		76C4E0ED222A441A00E1EDD4 /* Application Delegate */ = {
+		76C4E0ED222A441A00E1EDD4 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				76C4E0B8222A3E6500E1EDD4 /* AppDelegate.swift */,
 			);
-			path = "Application Delegate";
+			path = App;
 			sourceTree = "<group>";
 		};
 		76C4E0EE222A442C00E1EDD4 /* Supporting Files */ = {
