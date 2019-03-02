@@ -31,7 +31,7 @@ class MovieViewModelTest: XCTestCase {
         service.movies = [movie1, movie2, movie3]
         
         //When:
-        viewModel.loadMovies()
+        viewModel.loadMovies(for: movie1.title, year: movie1.year, type: movie1.type)
         
         //Then:
         XCTAssertEqual(view.outputs.count, 3)

@@ -23,6 +23,7 @@ class MovieTest: XCTestCase {
         XCTAssertEqual(movie.title, "Hello, My Name Is Doris")
         XCTAssertEqual(movie.year, "2015")
         XCTAssertEqual(movie.type, "movie")
+        XCTAssertEqual(movie.imdbID, "tt3766394")
     }
     
 }

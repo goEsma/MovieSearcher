@@ -22,7 +22,7 @@ class ResourceLoader {
         let bundle = Bundle.test
         guard let url = bundle.url(forResource: resource.rawValue, withExtension: "json") else {
             XCTFail("\(resource.rawValue) resource cannot be found.")
-            return Movie(title: "", year: "", type: "")
+            return Movie(title: "", year: "", type: "", imdbID: "")
         }
         let data = try Data(contentsOf: url)
         let movie = try JSONDecoder().decode(Movie.self, from: data)
