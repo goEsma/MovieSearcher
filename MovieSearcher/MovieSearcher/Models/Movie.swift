@@ -15,9 +15,11 @@ struct Movie: Decodable {
         case title = "Title"
         case year = "Year"
         case type = "Type"
+        case imdbID
     }
     
     var title:String
     var year:String
     var type:String
+    var imdbID:String
 }
