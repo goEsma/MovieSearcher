@@ -21,6 +21,7 @@
 		76C4E100222A5E5400E1EDD4 /* MovieListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4E0FF222A5E5400E1EDD4 /* MovieListResponse.swift */; };
 		76C4E102222A5EE400E1EDD4 /* ImdbService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4E101222A5EE400E1EDD4 /* ImdbService.swift */; };
 		76C4E105222A67A300E1EDD4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4E104222A67A300E1EDD4 /* Result.swift */; };
+		76C4E10B222A986900E1EDD4 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4E10A222A986900E1EDD4 /* MovieListViewController.swift */; };
 		CA6E213FB4EEF2F8080E6223 /* Pods_MovieSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8E5E996C91D3FBC511706D /* Pods_MovieSearcher.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		76C4E0FF222A5E5400E1EDD4 /* MovieListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListResponse.swift; sourceTree = "<group>"; };
 		76C4E101222A5EE400E1EDD4 /* ImdbService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImdbService.swift; sourceTree = "<group>"; };
 		76C4E104222A67A300E1EDD4 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		76C4E10A222A986900E1EDD4 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		8C8E5E996C91D3FBC511706D /* Pods_MovieSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B4DE53E83322CCA78F8D8 /* Pods_MovieSearcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7B8C3825D66764CE09F73E /* Pods_MovieSearcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +186,7 @@
 		76C4E0E8222A428500E1EDD4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				76C4E10A222A986900E1EDD4 /* MovieListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				76C4E0B9222A3E6500E1EDD4 /* AppDelegate.swift in Sources */,
 				76C4E100222A5E5400E1EDD4 /* MovieListResponse.swift in Sources */,
 				76C4E105222A67A300E1EDD4 /* Result.swift in Sources */,
+				76C4E10B222A986900E1EDD4 /* MovieListViewController.swift in Sources */,
 				76C4E0F6222A556F00E1EDD4 /* Movie.swift in Sources */,
 				76C4E102222A5EE400E1EDD4 /* ImdbService.swift in Sources */,
 			);
