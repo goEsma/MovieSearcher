@@ -9,5 +9,24 @@
 import UIKit
 
 final class MovieListViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     var service: ImdbService!
+}
+
+//extension MovieListViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//    }
+//
+//
+//}
+
+extension MovieListViewController: UITableViewDelegate {
+    
 }
