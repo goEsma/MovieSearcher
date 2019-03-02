@@ -93,6 +93,9 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="aJs-l2-PFx" id="swJ-Ks-57F"/>
+                        <outlet property="titleSearchBar" destination="MQT-Vw-n3i" id="0vu-IY-qOb"/>
+                        <outlet property="typeSearchBar" destination="5iL-87-Asd" id="OVJ-d6-8fk"/>
+                        <outlet property="yearSearchBar" destination="ZHy-UX-SK3" id="Rzn-AQ-UmF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -17,9 +17,9 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         self.service = service
     }
     
-    func loadMovies() {
+    func loadMovies(for title: String, year: String?, type: String?) {
         notify(.setLoading(true))
-        service.fetchMovies(title: "", year: "", type: "") { [weak self] (response) in
+        service.fetchMovies(title: title, year: year, type: type) { [weak self] (response) in
             guard let `self` = self else { return }
             self.notify(.setLoading(false))
             

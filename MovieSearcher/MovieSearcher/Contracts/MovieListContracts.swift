@@ -11,7 +11,7 @@ import Foundation
 ///The protocol of the MovieListViewModel.
 protocol MovieListViewModelProtocol {
     var delegate:MovieListViewModelDelegate? { get set }
-    func loadMovies()
+    func loadMovies(for title: String, year: String?, type: String?)
 }
 
 ///List of outputs that the viewModel sends to the viewController object.

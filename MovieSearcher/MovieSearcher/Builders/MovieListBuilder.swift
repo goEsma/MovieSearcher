@@ -13,7 +13,7 @@ final class MovieListBuilder {
     static func make() -> MovieListViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MovieListViewController") as! MovieListViewController
-        viewController.service = app.service
+        viewController.viewModel = MovieListViewModel(service: app.service)
         return viewController
     }
 }
