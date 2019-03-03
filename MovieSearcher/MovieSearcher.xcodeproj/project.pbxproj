@@ -243,8 +243,8 @@
 		76C4E0E8222A428500E1EDD4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E10A222A986900E1EDD4 /* MovieListViewController.swift */,
 				76C4E15C222B0A1B00E1EDD4 /* MovieDetailViewController.swift */,
+				76C4E10A222A986900E1EDD4 /* MovieListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -280,8 +280,8 @@
 		76C4E0ED222A441A00E1EDD4 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E0B8222A3E6500E1EDD4 /* AppDelegate.swift */,
 				76C4E106222A972F00E1EDD4 /* AppContainer.swift */,
+				76C4E0B8222A3E6500E1EDD4 /* AppDelegate.swift */,
 				76C4E108222A977300E1EDD4 /* AppRouter.swift */,
 			);
 			path = App;
@@ -309,8 +309,8 @@
 		76C4E0FE222A5E1C00E1EDD4 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E0FF222A5E5400E1EDD4 /* MovieListResponse.swift */,
 				76C4E15E222B0C6B00E1EDD4 /* MovieDetailResponse.swift */,
+				76C4E0FF222A5E5400E1EDD4 /* MovieListResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -326,8 +326,8 @@
 		76C4E10C222AA73100E1EDD4 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E10D222AA74300E1EDD4 /* MovieListBuilder.swift */,
 				76C4E16A222B893000E1EDD4 /* MovieDetailBuilder.swift */,
+				76C4E10D222AA74300E1EDD4 /* MovieListBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -344,8 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				76C4E143222AE96500E1EDD4 /* Extension */,
-				76C4E145222AE96500E1EDD4 /* MoviePresentation.swift */,
 				76C4E164222B106300E1EDD4 /* MovieDetailPresentation.swift */,
+				76C4E145222AE96500E1EDD4 /* MoviePresentation.swift */,
 			);
 			path = Presentations;
 			sourceTree = "<group>";
@@ -353,8 +353,8 @@
 		76C4E143222AE96500E1EDD4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E144222AE96500E1EDD4 /* MoviePresentation+API.swift */,
 				76C4E168222B885700E1EDD4 /* MovieDetailPresentation+API.swift */,
+				76C4E144222AE96500E1EDD4 /* MoviePresentation+API.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -362,8 +362,8 @@
 		76C4E148222AE9AC00E1EDD4 /* Contracts */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E149222AE9BD00E1EDD4 /* MovieListContracts.swift */,
 				76C4E162222B104900E1EDD4 /* MovieDetailContracts.swift */,
+				76C4E149222AE9BD00E1EDD4 /* MovieListContracts.swift */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";
@@ -371,8 +371,8 @@
 		76C4E14B222AEA1D00E1EDD4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E14C222AEA3600E1EDD4 /* MovieListViewModel.swift */,
 				76C4E166222B881900E1EDD4 /* MovieDetailViewModel.swift */,
+				76C4E14C222AEA3600E1EDD4 /* MovieListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
