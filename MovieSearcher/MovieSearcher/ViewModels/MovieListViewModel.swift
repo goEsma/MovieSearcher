@@ -9,7 +9,6 @@
 import Foundation
 
 final class MovieListViewModel: MovieListViewModelProtocol {
-    
     weak var delegate: MovieListViewModelDelegate?
     private let service: ImdbServiceProtocol
     private var movies: [Movie] = []
@@ -28,24 +27,23 @@ final class MovieListViewModel: MovieListViewModelProtocol {
             
             switch response {
             case .success(let result):
-                DispatchQueue.main.async {
-                    if page == 1 {
-                        self.movies = result.movies
-                    }else {
-                        self.movies = self.movies + result.movies
-                    }
-                    
-                    let presentations = self.movies.map({ MoviePresentation(title: $0.title, year: $0.year, type: $0.type) })
-                    self.notify(.showMovieList(presentations))
-                    
-                    if let total = Int(result.totalResult) {
-                        self.totalResult = total
-                    }
+                if page == 1 {
+                    self.movies = result.movies
+                }else {
+                    self.movies = self.movies + result.movies
                 }
+                
+                let presentations = self.movies.map({ MoviePresentation(title: $0.title, year: $0.year, type: $0.type) })
+                self.notify(.showMovieList(presentations))
+                
+                if let total = Int(result.totalResult) {
+                    self.totalResult = total
+                }
+            
             case .failure(_):
-                DispatchQueue.main.async {
+                if page == 1 {
                     self.notify(.showEmptyList())
-                }
+                }                
             }
         }
     }
@@ -63,9 +61,24 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         delegate?.navigate(to: .detail(viewModel))
     }
     
+    func validateEntries(title: String, year: String, type: String) -> EntryValidation  {
+        guard title != "" else {
+            return .invalidTitle
+        }
+        if Int(year) == nil && year != ""  {
+            return .invalidYear
+        }
+        return .valid
+    }
+    
     private func notify(_ output: MovieListViewModelOutput) {
         delegate?.handleViewModel(output: output)
     }
     
 }
 
+enum EntryValidation {
+    case valid
+    case invalidTitle
+    case invalidYear
+}

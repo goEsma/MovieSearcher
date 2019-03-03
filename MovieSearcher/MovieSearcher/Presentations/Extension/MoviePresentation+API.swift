@@ -9,6 +9,7 @@
 import Foundation
 
 extension MoviePresentation {
+    //convenient initalizer is created to enable initializing the presentation object with a single parameter.
     convenience init(movie: Movie) {
         self.init(title: movie.title, year: movie.year, type: movie.type)
     }

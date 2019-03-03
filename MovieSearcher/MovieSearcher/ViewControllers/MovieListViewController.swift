@@ -17,7 +17,7 @@ final class MovieListViewController: UIViewController, AlertDisplayer {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    private var pickerList = ["movie", "episode", "series"]
+    private var pickerList = ["", "movie", "episode", "series"]
 
     var viewModel: MovieListViewModelProtocol! {
         didSet {
@@ -27,30 +27,53 @@ final class MovieListViewController: UIViewController, AlertDisplayer {
 
     private var movieList: [MoviePresentation] = []
 
+    private enum LoadType {
+        case loadFirst
+        case loadNext
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register((UINib(nibName: "MovieTableViewCell", bundle: nil)), forCellReuseIdentifier: "MovieTableViewCell")
+        view.accessibilityIdentifier = "movieListView"
+        self.tableView.register((UINib(nibName: Cell.NibName.Movie, bundle: nil)), forCellReuseIdentifier: Cell.Identifier.Movie)
 
-        let searchButton = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(searchButtonTapped))
+        let searchButton = UIBarButtonItem(title: Constants.MovieList.BarButton.Search, style: .plain, target: self, action: #selector(searchButtonTapped))
         navigationItem.rightBarButtonItem = searchButton
 
     }
     
     @objc func searchButtonTapped() {
-        guard let title = titleSearchBar.text, title != "" else {
-            let action = UIAlertAction(title: "OK", style: .default)
-            displayAlert(with: "Ops!", message: "You must enter a title.", actions: [action])
-            return
-        }
-        let type = typeSearchBar.text
-        let year = yearSearchBar.text
-        viewModel.loadMovies(for: title, year: year, type: type, page:1)
+ 
+        loadData(with: .loadFirst)
+        
         self.resignFirstResponder()
         self.view.endEditing(true)
+        
     }
 
+    private func loadData(with loadAction: LoadType){
+        guard let title = titleSearchBar.text, let year = yearSearchBar.text, let type = typeSearchBar.text else { return }
+        let validation = viewModel.validateEntries(title: title, year: year, type: type)
+        switch validation {
+        case .valid:
+            switch loadAction{
+            case .loadFirst:
+                viewModel.loadMovies(for: title, year: year, type: type, page:1)
+            case .loadNext:
+                viewModel.shouldLoadNextPage(title: title, type: type, year: year)
+            }
+        case .invalidYear:
+            let action = UIAlertAction(title: Constants.Actions.Ok, style: .default)
+            self.displayAlert(with: Constants.ErrorTitle, message: Constants.MovieList.Errors.ValidYear, actions: [action])
+        case .invalidTitle:
+            let action = UIAlertAction(title: Constants.Actions.Ok, style: .default)
+            displayAlert(with: Constants.ErrorTitle, message: Constants.MovieList.Errors.NeedToEnterTitle, actions: [action])
+        }
+    }
+    
 }
 
+//MARK: - MovieListViewModelDelegate
 extension MovieListViewController: MovieListViewModelDelegate {
     
     func handleViewModel(output: MovieListViewModelOutput) {
@@ -76,9 +99,10 @@ extension MovieListViewController: MovieListViewModelDelegate {
 
 }
 
+//MARK: - UITableViewDataSource
 extension MovieListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as? MovieTableViewCell else {fatalError("Cell cannot be found!")}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.Movie, for: indexPath) as? MovieTableViewCell else {fatalError(Constants.MovieList.Errors.NoCellFound)}
         cell.setup(movie: movieList[indexPath.row] )
         return cell
     }
@@ -89,7 +113,7 @@ extension MovieListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.movieList.count == 0 {
-            return "No movies to show."
+            return Constants.MovieList.NoMovies
         }
         return nil
     }
@@ -103,6 +127,7 @@ extension MovieListViewController: UITableViewDataSource {
 
 }
 
+//MARK: - UITableViewDelegate
 extension MovieListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
@@ -115,18 +140,10 @@ extension MovieListViewController: UITableViewDelegate {
         
         // check if the cell is the last one
         if indexPath.row == movieList.count - 1 {
-            guard let title = titleSearchBar.text, title != "" else {
-                let action = UIAlertAction(title: "OK", style: .default)
-                displayAlert(with: "Ops!", message: "You must enter a title.", actions: [action])
-                return
-            }
-            let type = typeSearchBar.text
-            let year = yearSearchBar.text
-            viewModel.shouldLoadNextPage(title: title, type: type, year: year)
+            self.loadData(with: .loadNext)
         }
     }
 }
-
 
 //MARK: - UISearchBarDelegate
 extension MovieListViewController: UISearchBarDelegate {
@@ -135,18 +152,16 @@ extension MovieListViewController: UISearchBarDelegate {
             self.typePicker.isHidden = false
             searchBar.resignFirstResponder()
         }else {
+            self.typePicker.isHidden = true
             searchBar.becomeFirstResponder()
         }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.frame = CGRect(x: 0.0, y: -80.0, width: 0.0, height: 44.0)
         searchBar.resignFirstResponder()
         self.view.endEditing(true)
         searchBar.text = ""
-        if searchBar == typeSearchBar {
-            self.typePicker.isHidden = true
-        }
+        self.typePicker.isHidden = true
         
     }
     
@@ -157,6 +172,7 @@ extension MovieListViewController: UISearchBarDelegate {
     
 }
 
+//MARK: - UIPickerViewDataSource
 extension MovieListViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -169,6 +185,7 @@ extension MovieListViewController: UIPickerViewDataSource {
     
 }
 
+//MARK: - UIPickerViewDelegate
 extension MovieListViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         self.view.endEditing(true)
@@ -180,3 +197,4 @@ extension MovieListViewController: UIPickerViewDelegate {
         self.typePicker.isHidden = true
     }
 }
+

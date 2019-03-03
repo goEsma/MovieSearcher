@@ -8,6 +8,7 @@
 
 import Foundation
 
+///Presentation of `Movie` object.
 final class MoviePresentation: NSObject {
     let title: String
     let year: String
