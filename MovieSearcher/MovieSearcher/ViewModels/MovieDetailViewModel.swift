@@ -35,10 +35,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         }
     }
     
-    func loadPoster(url: String) {
-        //Use Alamofire Image. 
-    }
-    
     private func notify(_ output: MovieDetailViewModelOutput) {
         delegate?.handleViewModel(output: output)
     }

@@ -11,7 +11,6 @@ import Foundation
 protocol MovieDetailViewModelProtocol {
     var delegate: MovieDetailViewModelDelegate? { get set }
     func loadDetails()
-    func loadPoster(url:String)
 }
 
 ///List of outputs that the viewModel sends to the viewController object.

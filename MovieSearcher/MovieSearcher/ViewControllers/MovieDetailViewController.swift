@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class MovieDetailViewController: UIViewController {
     
@@ -51,5 +52,9 @@ extension MovieDetailViewController: MovieDetailViewModelDelegate {
         rated.text = presentation.rated
         year.text = presentation.year
         plot.text = presentation.plot
+
+        if let url = URL(string: presentation.posterUrl){
+            posterView.af_setImage(withURL: url)
+        }
     }
 }
