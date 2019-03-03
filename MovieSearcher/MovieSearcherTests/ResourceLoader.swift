@@ -18,6 +18,10 @@ class ResourceLoader {
         case movie3
     }
     
+    enum MovieDetailResource: String {
+        case movieDetail1
+    }
+    
     static func loadMovie(resource: MovieResource) throws -> Movie {
         let bundle = Bundle.test
         guard let url = bundle.url(forResource: resource.rawValue, withExtension: "json") else {
@@ -27,6 +31,17 @@ class ResourceLoader {
         let data = try Data(contentsOf: url)
         let movie = try JSONDecoder().decode(Movie.self, from: data)
         return movie
+    }
+    
+    static func loadMovieDetail(resource: MovieDetailResource) throws -> MovieDetail {
+        let bundle = Bundle.test
+        guard let url = bundle.url(forResource: resource.rawValue, withExtension: "json") else {
+            XCTFail("\(resource.rawValue) resource cannot be found.")
+            return MovieDetail(title: "", year: "", genre: "", runTime: "", rated: "", director: "", plot: "", posterUrl: "")
+        }
+        let data = try Data(contentsOf: url)
+        let movieDetail = try JSONDecoder().decode(MovieDetail.self, from: data)
+        return movieDetail
     }
 }
 

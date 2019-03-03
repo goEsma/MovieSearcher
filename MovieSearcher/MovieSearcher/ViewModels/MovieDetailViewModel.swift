@@ -23,7 +23,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     func loadDetails() {
         notify(.setLoading(true))
-        service.getMovieDetail(with: imdbId) { (response) in
+        service.getMovieDetail(with: imdbId) {[weak self] (response) in
+            guard let `self` = self else { return }
+            self.notify(.setLoading(false))
+            
             switch response {
             case .success(let result):
                 let details = result.movieDetail

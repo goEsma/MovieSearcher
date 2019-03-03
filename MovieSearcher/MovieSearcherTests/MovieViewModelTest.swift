@@ -43,15 +43,42 @@ class MovieViewModelTest: XCTestCase {
         XCTAssertEqual(try view.outputs.element(at: 2), .showMovieList(expectedMovies))
     }
     
+    func testNavigation() throws {
+        // Given:
+        let movie1 = try ResourceLoader.loadMovie(resource: .movie1)
+        let movie2 = try ResourceLoader.loadMovie(resource: .movie2)
+        let movie3 = try ResourceLoader.loadMovie(resource: .movie3)
+
+        service.movies = [movie1, movie2, movie3]
+        viewModel.loadMovies(for: movie1.title, year: movie1.year, type: movie1.type)
+        view.reset()
+        
+        // When:
+        viewModel.selectMovie(at: 0)
+        
+        // Then:
+        XCTAssertTrue(view.detailRouteCalled)
+    }
+    
 }
 
 private class MockView: MovieListViewModelDelegate {
-    
     var outputs: [MovieListViewModelOutput] = []
+    var detailRouteCalled: Bool = false
+
+    func reset() {
+        outputs.removeAll()
+        detailRouteCalled = false
+    }
     
     func handleViewModel(output: MovieListViewModelOutput) {
         outputs.append(output)
     }
     
-    
+    func navigate(to route: MovieListViewRoute) {
+        switch route {
+        case .detail:
+            detailRouteCalled = true
+        }
+    }
 }
