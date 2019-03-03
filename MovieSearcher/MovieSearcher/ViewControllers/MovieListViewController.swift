@@ -72,6 +72,7 @@ final class MovieListViewController: UIViewController, AlertDisplayer {
     
 }
 
+//MARK: - MovieListViewModelDelegate
 extension MovieListViewController: MovieListViewModelDelegate {
     
     func handleViewModel(output: MovieListViewModelOutput) {
@@ -97,6 +98,7 @@ extension MovieListViewController: MovieListViewModelDelegate {
 
 }
 
+//MARK: - UITableViewDataSource
 extension MovieListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.Movie, for: indexPath) as? MovieTableViewCell else {fatalError(Constants.MovieList.Errors.NoCellFound)}
@@ -124,6 +126,7 @@ extension MovieListViewController: UITableViewDataSource {
 
 }
 
+//MARK: - UITableViewDelegate
 extension MovieListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
@@ -140,7 +143,6 @@ extension MovieListViewController: UITableViewDelegate {
         }
     }
 }
-
 
 //MARK: - UISearchBarDelegate
 extension MovieListViewController: UISearchBarDelegate {
@@ -169,6 +171,7 @@ extension MovieListViewController: UISearchBarDelegate {
     
 }
 
+//MARK: - UIPickerViewDataSource
 extension MovieListViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -181,6 +184,7 @@ extension MovieListViewController: UIPickerViewDataSource {
     
 }
 
+//MARK: - UIPickerViewDelegate
 extension MovieListViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         self.view.endEditing(true)

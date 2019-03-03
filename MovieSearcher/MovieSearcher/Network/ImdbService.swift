@@ -9,12 +9,14 @@
 import Foundation
 import Alamofire
 
+/// Protocol of the `ImdbService`.
 protocol ImdbServiceProtocol {
     func fetchMovies(title:String, year:String?, type:String?, page:Int, completion:  @escaping (Result<MovieListResponse>) -> Void)
     
     func getMovieDetail(with id:String, completion: @escaping (Result<MovieDetailResponse>) -> Void)
 }
 
+/// Handles data requests to Imdb service.
 class ImdbService: ImdbServiceProtocol {
     
     enum Error: Swift.Error {

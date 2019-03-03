@@ -20,6 +20,7 @@ class MovieDetailViewController: UIViewController, AlertDisplayer {
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var plot: UITextView!
     
+    //default poster height is 0.
     @IBOutlet weak var posterHeightContraint: NSLayoutConstraint!
     private let posterHeight:CGFloat = 180.0
     
@@ -36,6 +37,7 @@ class MovieDetailViewController: UIViewController, AlertDisplayer {
     }
 }
 
+// MARK: - MovieDetailViewModelDelegate
 extension MovieDetailViewController: MovieDetailViewModelDelegate {
     func handleViewModel(output: MovieDetailViewModelOutput) {
         switch output {
@@ -44,8 +46,8 @@ extension MovieDetailViewController: MovieDetailViewModelDelegate {
         case .showDetail(let presentation):
             self.showDetail(presentation)
         case .showEmptyDetail():
-            let action = UIAlertAction(title: "OK", style: .default)
-            displayAlert(with: "Ops!", message: "Can't retrive the details.", actions: [action])
+            let action = UIAlertAction(title: Constants.Actions.Ok, style: .default)
+            displayAlert(with: Constants.ErrorTitle, message: Constants.MovieDetail.Errors.NoDetails, actions: [action])
         }
     }
     

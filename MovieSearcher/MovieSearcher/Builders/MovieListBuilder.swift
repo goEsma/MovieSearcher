@@ -8,6 +8,7 @@
 
 import UIKit
 
+///Builds a `MovieListViewController`, and injects dependencies.
 final class MovieListBuilder {
     
     static func make() -> MovieListViewController {

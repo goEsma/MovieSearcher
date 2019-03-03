@@ -8,18 +8,21 @@
 
 import UIKit
 
+///Enables its conformers to displayAlert with just 1-2 lines of code, includes default implementation in its extension. 
 protocol AlertDisplayer {
-    func displayAlert(with title: String, message: String, actions: [UIAlertAction]?)
+    func displayAlert(with title: String, message: String, actions: [UIAlertAction])
 }
 
 extension AlertDisplayer where Self: UIViewController {
-    func displayAlert(with title: String, message: String, actions: [UIAlertAction]? = nil) {
+    
+   //Default implementation of the display alert function.
+    func displayAlert(with title: String, message: String, actions: [UIAlertAction]) {
         guard presentedViewController == nil else {
             return
         }
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        actions?.forEach { action in
+        actions.forEach { action in
             alertController.addAction(action)
         }
         present(alertController, animated: true)

@@ -8,6 +8,7 @@
 
 import Foundation
 
+///The protocol of the `MovieDetailViewModel`.
 protocol MovieDetailViewModelProtocol {
     var delegate: MovieDetailViewModelDelegate? { get set }
     func loadDetails()

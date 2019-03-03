@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 
+///Enables type safe access to request parameters and methods.
 public enum Router: URLRequestConvertible {
     
     enum Constants {
@@ -23,7 +24,6 @@ public enum Router: URLRequestConvertible {
         switch self {
         case .movie, .movieDetails:
             return .get
-            
         }
     }
     

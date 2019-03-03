@@ -11,28 +11,31 @@ import UIKit
 ///Contains app constants.
 enum Constants {
     
+    ///Alert error title.
     static var ErrorTitle:String {
         return "Ops!"
     }
-    
+    ///Alert actions
     enum Actions {
         static var Ok:String {
             return "OK"
         }
     }
     
-    ///Keys for Firebase Remote Config
+    ///Keys for MovieList scene.
     enum MovieList {
         static var NoMovies:String {
             return "No items to show."
         }
         
+        ///Bar button titles
         enum BarButton {
             static var Search:String {
                 return "Search"
             }
         }
         
+        ///Error messages.
         enum Errors {
             static var NeedToEnterTitle:String {
                 return "You must enter a title."
@@ -42,6 +45,14 @@ enum Constants {
             }
             static var NoCellFound:String {
                 return "Cell cannot be found!"
+            }
+        }
+    }
+    
+    enum MovieDetail {
+        enum Errors{
+            static var NoDetails:String {
+                return "Can't retrive the details."
             }
         }
     }

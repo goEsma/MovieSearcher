@@ -35,6 +35,7 @@ protocol MovieListViewModelDelegate: class {
     func navigate(to route: MovieListViewRoute)
 }
 
+///Lists route options for a `MovieListViewModelDelegate`.
 enum MovieListViewRoute {
     case detail(MovieDetailViewModelProtocol)
 }
