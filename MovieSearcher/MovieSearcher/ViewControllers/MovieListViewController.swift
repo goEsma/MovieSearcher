@@ -34,6 +34,7 @@ final class MovieListViewController: UIViewController, AlertDisplayer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityIdentifier = "movieListView"
         self.tableView.register((UINib(nibName: Cell.NibName.Movie, bundle: nil)), forCellReuseIdentifier: Cell.Identifier.Movie)
 
         let searchButton = UIBarButtonItem(title: Constants.MovieList.BarButton.Search, style: .plain, target: self, action: #selector(searchButtonTapped))
