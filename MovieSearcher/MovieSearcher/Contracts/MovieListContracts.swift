@@ -14,6 +14,7 @@ protocol MovieListViewModelProtocol {
     func loadMovies(for title: String, year: String?, type: String?, page:Int)
     func selectMovie(at index: Int)
     func shouldLoadNextPage(title:String, type: String?, year: String?)
+    func validateEntries(title:String, year:String, type:String) -> EntryValidation
 }
 
 ///List of outputs that the viewModel sends to the viewController object.
