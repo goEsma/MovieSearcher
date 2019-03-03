@@ -16,7 +16,7 @@ public enum Router: URLRequestConvertible {
         static let apiKey = "7ef7d212"
     }
     
-    case movie(title:String, type:String?, year:String?)
+    case movie(title:String, type:String?, year:String?, page:Int)
     case movieDetails(id:String)
 
     var method:HTTPMethod {
@@ -38,10 +38,11 @@ public enum Router: URLRequestConvertible {
         var params = ["apiKey" : Constants.apiKey as Any]
         
         switch self {
-        case .movie(let title, let type, let year):
+        case .movie(let title, let type, let year, let page):
             params["s"] = title as Any
             params["type"] = type ?? "" as Any
             params["y"] = year ?? "" as Any
+            params["page"] = page as Any
             
         case .movieDetails(let id):
             params["i"] = id as Any

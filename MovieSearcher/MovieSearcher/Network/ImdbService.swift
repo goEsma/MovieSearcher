@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 protocol ImdbServiceProtocol {
-    func fetchMovies(title:String, year:String?, type:String?, completion:  @escaping (Result<MovieListResponse>) -> Void)
+    func fetchMovies(title:String, year:String?, type:String?, page:Int, completion:  @escaping (Result<MovieListResponse>) -> Void)
     
     func getMovieDetail(with id:String, completion: @escaping (Result<MovieDetailResponse>) -> Void)
 }
@@ -22,8 +22,8 @@ class ImdbService: ImdbServiceProtocol {
         case networkError(internal: Swift.Error)
     }
     
-    func fetchMovies(title: String, year: String?, type: String?, completion: @escaping (Result<MovieListResponse>) -> Void) {
-        request(Router.movie(title: title, type: type, year: year)).responseData { (response) in
+    func fetchMovies(title: String, year: String?, type: String?, page:Int, completion: @escaping (Result<MovieListResponse>) -> Void) {
+        request(Router.movie(title: title, type: type, year: year, page: page)).responseData { (response) in
             switch response.result {
             case .success(let data):
                 let decoder = JSONDecoder()

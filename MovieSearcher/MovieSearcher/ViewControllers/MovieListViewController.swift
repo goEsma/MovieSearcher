@@ -44,7 +44,7 @@ final class MovieListViewController: UIViewController, AlertDisplayer {
         }
         let type = typeSearchBar.text
         let year = yearSearchBar.text
-        viewModel.loadMovies(for: title, year: year, type: type)
+        viewModel.loadMovies(for: title, year: year, type: type, page:1)
         self.resignFirstResponder()
         self.view.endEditing(true)
     }
@@ -90,6 +90,23 @@ extension MovieListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         viewModel.selectMovie(at: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // return if another service is on call.
+        guard !UIApplication.shared.isNetworkActivityIndicatorVisible else { return }
+        
+        // check if the cell is the last one
+        if indexPath.row == movieList.count - 1 {
+            guard let title = titleSearchBar.text, title != "" else {
+                let action = UIAlertAction(title: "OK", style: .default)
+                displayAlert(with: "Ops!", message: "You must enter a title.", actions: [action])
+                return
+            }
+            let type = typeSearchBar.text
+            let year = yearSearchBar.text
+            viewModel.shouldLoadNextPage(title: title, type: type, year: year)
+        }
     }
 }
 
