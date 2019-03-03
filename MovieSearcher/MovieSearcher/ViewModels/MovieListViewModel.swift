@@ -43,6 +43,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
 
             case .failure(let error):
                 print(error)
+                self.notify(.showEmptyList())
             }
         }
     }

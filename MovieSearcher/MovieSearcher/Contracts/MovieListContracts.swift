@@ -20,6 +20,8 @@ protocol MovieListViewModelProtocol {
 enum MovieListViewModelOutput: Equatable {
     case setLoading(Bool)
     case showMovieList([MoviePresentation])
+    case showEmptyList()
+
 }
 
 /**

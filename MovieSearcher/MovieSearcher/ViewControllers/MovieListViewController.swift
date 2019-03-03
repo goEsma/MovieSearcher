@@ -60,6 +60,9 @@ extension MovieListViewController: MovieListViewModelDelegate {
         case .showMovieList(let movieList):
             self.movieList = movieList
             tableView.reloadData()
+        case .showEmptyList():
+            self.movieList = []
+            tableView.reloadData()
         }
     }
     
@@ -82,6 +85,20 @@ extension MovieListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieList.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.movieList.count == 0 {
+            return "No movies to show."
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if self.movieList.count == 0 {
+            return UIView()
+        }
+        return nil
     }
 
 }
