@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController, AlertDisplayer {
     
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var posterView: UIImageView!
@@ -40,6 +40,9 @@ extension MovieDetailViewController: MovieDetailViewModelDelegate {
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         case .showDetail(let presentation):
             self.showDetail(presentation)
+        case .showEmptyDetail():
+            let action = UIAlertAction(title: "OK", style: .default)
+            displayAlert(with: "Ops!", message: "Can't retrive the details.", actions: [action])
         }
     }
     

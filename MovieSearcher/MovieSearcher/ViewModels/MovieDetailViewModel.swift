@@ -32,8 +32,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
                 let details = result.movieDetail
                 let presentation = MovieDetailPresentation(title: details.title, year: details.year, genre: details.genre, runTime: details.runTime, rated: details.rated, director: details.director, plot: details.plot, posterUrl: details.posterUrl)
                 self.notify(.showDetail(presentation))
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                self.notify(.showEmptyDetail())
             }
         }
     }

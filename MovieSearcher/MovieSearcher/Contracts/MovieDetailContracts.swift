@@ -17,6 +17,8 @@ protocol MovieDetailViewModelProtocol {
 enum MovieDetailViewModelOutput: Equatable {
     case setLoading(Bool)
     case showDetail(_ presentation: MovieDetailPresentation)
+    case showEmptyDetail()
+
 }
 
 /**
