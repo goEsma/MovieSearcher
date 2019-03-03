@@ -27,28 +27,49 @@ final class MovieListViewController: UIViewController, AlertDisplayer {
 
     private var movieList: [MoviePresentation] = []
 
+    private enum LoadType {
+        case loadFirst
+        case loadNext
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register((UINib(nibName: "MovieTableViewCell", bundle: nil)), forCellReuseIdentifier: "MovieTableViewCell")
+        self.tableView.register((UINib(nibName: Cell.NibName.Movie, bundle: nil)), forCellReuseIdentifier: Cell.Identifier.Movie)
 
-        let searchButton = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(searchButtonTapped))
+        let searchButton = UIBarButtonItem(title: Constants.MovieList.BarButton.Search, style: .plain, target: self, action: #selector(searchButtonTapped))
         navigationItem.rightBarButtonItem = searchButton
 
     }
     
     @objc func searchButtonTapped() {
-        guard let title = titleSearchBar.text, title != "" else {
-            let action = UIAlertAction(title: "OK", style: .default)
-            displayAlert(with: "Ops!", message: "You must enter a title.", actions: [action])
-            return
-        }
-        let type = typeSearchBar.text
-        let year = yearSearchBar.text
-        viewModel.loadMovies(for: title, year: year, type: type, page:1)
+ 
+        loadData(with: .loadFirst)
+        
         self.resignFirstResponder()
         self.view.endEditing(true)
+        
     }
 
+    private func loadData(with loadAction: LoadType){
+        guard let title = titleSearchBar.text, let year = yearSearchBar.text, let type = typeSearchBar.text else { return }
+        let validation = viewModel.validateEntries(title: title, year: year, type: type)
+        switch validation {
+        case .valid:
+            switch loadAction{
+            case .loadFirst:
+                viewModel.loadMovies(for: title, year: year, type: type, page:1)
+            case .loadNext:
+                viewModel.shouldLoadNextPage(title: title, type: type, year: year)
+            }
+        case .invalidYear:
+            let action = UIAlertAction(title: Constants.Actions.Ok, style: .default)
+            self.displayAlert(with: Constants.ErrorTitle, message: Constants.MovieList.Errors.ValidYear, actions: [action])
+        case .invalidTitle:
+            let action = UIAlertAction(title: Constants.Actions.Ok, style: .default)
+            displayAlert(with: Constants.ErrorTitle, message: Constants.MovieList.Errors.NeedToEnterTitle, actions: [action])
+        }
+    }
+    
 }
 
 extension MovieListViewController: MovieListViewModelDelegate {
@@ -78,7 +99,7 @@ extension MovieListViewController: MovieListViewModelDelegate {
 
 extension MovieListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as? MovieTableViewCell else {fatalError("Cell cannot be found!")}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Cell.Identifier.Movie, for: indexPath) as? MovieTableViewCell else {fatalError(Constants.MovieList.Errors.NoCellFound)}
         cell.setup(movie: movieList[indexPath.row] )
         return cell
     }
@@ -89,7 +110,7 @@ extension MovieListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.movieList.count == 0 {
-            return "No movies to show."
+            return Constants.MovieList.NoMovies
         }
         return nil
     }
@@ -115,14 +136,7 @@ extension MovieListViewController: UITableViewDelegate {
         
         // check if the cell is the last one
         if indexPath.row == movieList.count - 1 {
-            guard let title = titleSearchBar.text, title != "" else {
-                let action = UIAlertAction(title: "OK", style: .default)
-                displayAlert(with: "Ops!", message: "You must enter a title.", actions: [action])
-                return
-            }
-            let type = typeSearchBar.text
-            let year = yearSearchBar.text
-            viewModel.shouldLoadNextPage(title: title, type: type, year: year)
+            self.loadData(with: .loadNext)
         }
     }
 }
@@ -180,3 +194,4 @@ extension MovieListViewController: UIPickerViewDelegate {
         self.typePicker.isHidden = true
     }
 }
+
