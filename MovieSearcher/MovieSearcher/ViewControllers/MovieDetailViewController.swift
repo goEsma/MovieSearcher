@@ -59,7 +59,9 @@ extension MovieDetailViewController: MovieDetailViewModelDelegate {
         year.text = presentation.year
         plot.text = presentation.plot
 
-        if let url = URL(string: presentation.posterUrl){
+        guard presentation.posterUrl != "N/A" else {return}
+        
+        if let url = URL(string: presentation.posterUrl) {
             posterView.af_setImage(withURL: url)
             
             //animate poster height.

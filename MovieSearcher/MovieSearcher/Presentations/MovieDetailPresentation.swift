@@ -19,13 +19,13 @@ final class MovieDetailPresentation: NSObject {
     var posterUrl:String
     
     init(title:String, year:String, genre:String, runTime:String, rated:String, director:String, plot:String, posterUrl:String) {
-        self.title = title
-        self.year = year
-        self.genre = genre
-        self.runTime = runTime
-        self.rated = rated
-        self.director = director
-        self.plot = plot
+        self.title = title.withoutNA()
+        self.year = year.withoutNA()
+        self.genre = genre.withoutNA()
+        self.runTime = runTime.withoutNA()
+        self.rated = rated.withoutNA()
+        self.director = director.withoutNA()
+        self.plot = plot.withoutNA()
         self.posterUrl = posterUrl
         
         super.init()
