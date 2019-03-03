@@ -11,6 +11,8 @@ import Alamofire
 
 protocol ImdbServiceProtocol {
     func fetchMovies(title:String, year:String?, type:String?, completion:  @escaping (Result<MovieListResponse>) -> Void)
+    
+    func getMovieDetail(with id:String, completion: @escaping (Result<MovieDetailResponse>) -> Void)
 }
 
 class ImdbService: ImdbServiceProtocol {
