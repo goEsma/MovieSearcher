@@ -28,21 +28,24 @@ final class MovieListViewModel: MovieListViewModelProtocol {
             
             switch response {
             case .success(let result):
-                if page == 1 {
-                    self.movies = result.movies
-                }else {
-                    self.movies = self.movies + result.movies
+                DispatchQueue.main.async {
+                    if page == 1 {
+                        self.movies = result.movies
+                    }else {
+                        self.movies = self.movies + result.movies
+                    }
+                    
+                    let presentations = self.movies.map({ MoviePresentation(title: $0.title, year: $0.year, type: $0.type) })
+                    self.notify(.showMovieList(presentations))
+                    
+                    if let total = Int(result.totalResult) {
+                        self.totalResult = total
+                    }
                 }
-                
-                let presentations = self.movies.map({ MoviePresentation(title: $0.title, year: $0.year, type: $0.type) })
-                self.notify(.showMovieList(presentations))
-                
-                if let total = Int(result.totalResult) {
-                    self.totalResult = total
-                }
-
             case .failure(_):
-                self.notify(.showEmptyList())
+                DispatchQueue.main.async {
+                    self.notify(.showEmptyList())
+                }
             }
         }
     }

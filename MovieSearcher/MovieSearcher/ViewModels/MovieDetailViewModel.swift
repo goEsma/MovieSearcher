@@ -29,11 +29,15 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
             
             switch response {
             case .success(let result):
-                let details = result.movieDetail
-                let presentation = MovieDetailPresentation(title: details.title, year: details.year, genre: details.genre, runTime: details.runTime, rated: details.rated, director: details.director, plot: details.plot, posterUrl: details.posterUrl)
-                self.notify(.showDetail(presentation))
+                DispatchQueue.main.async {
+                    let details = result.movieDetail
+                    let presentation = MovieDetailPresentation(title: details.title, year: details.year, genre: details.genre, runTime: details.runTime, rated: details.rated, director: details.director, plot: details.plot, posterUrl: details.posterUrl)
+                    self.notify(.showDetail(presentation))
+                }
             case .failure(_):
-                self.notify(.showEmptyDetail())
+                DispatchQueue.main.async {
+                    self.notify(.showEmptyDetail())
+                }
             }
         }
     }
