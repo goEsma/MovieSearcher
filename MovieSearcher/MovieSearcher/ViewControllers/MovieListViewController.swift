@@ -34,6 +34,7 @@ final class MovieListViewController: UIViewController {
 }
 
 extension MovieListViewController: MovieListViewModelDelegate {
+    
     func handleViewModel(output: MovieListViewModelOutput) {
         switch output {
         case .setLoading(let isLoading):
@@ -41,6 +42,14 @@ extension MovieListViewController: MovieListViewModelDelegate {
         case .showMovieList(let movieList):
             self.movieList = movieList
             tableView.reloadData()
+        }
+    }
+    
+    func navigate(to route: MovieListViewRoute) {
+        switch route {
+        case .detail(let viewModel):
+            let viewController = MovieDetailBuilder.make(with: viewModel)
+            show(viewController, sender: nil)
         }
     }
 
@@ -61,6 +70,10 @@ extension MovieListViewController: UITableViewDataSource {
 
 extension MovieListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        viewModel.selectMovie(at: indexPath.row)
+    }
 }
 
 

@@ -12,7 +12,8 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     
     weak var delegate: MovieListViewModelDelegate?
     private let service: ImdbServiceProtocol
-    
+    private var movies: [Movie] = []
+
     init(service: ImdbServiceProtocol) {
         self.service = service
     }
@@ -25,13 +26,19 @@ final class MovieListViewModel: MovieListViewModelProtocol {
             
             switch response {
             case .success(let result):
-                let movies = result.movies
-                let presentations = movies.map({ MoviePresentation(title: $0.title, year: $0.year, type: $0.type) })
+                self.movies = result.movies
+                let presentations = self.movies.map({ MoviePresentation(title: $0.title, year: $0.year, type: $0.type) })
                 self.notify(.showMovieList(presentations))
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    func selectMovie(at index: Int) {
+        let movie = movies[index]
+        let viewModel = MovieDetailViewModel(service: self.service, imdbId: movie.imdbID)
+        delegate?.navigate(to: .detail(viewModel))
     }
     
     private func notify(_ output: MovieListViewModelOutput) {

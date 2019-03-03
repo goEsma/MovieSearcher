@@ -12,6 +12,7 @@ import Foundation
 protocol MovieListViewModelProtocol {
     var delegate:MovieListViewModelDelegate? { get set }
     func loadMovies(for title: String, year: String?, type: String?)
+    func selectMovie(at index: Int)
 }
 
 ///List of outputs that the viewModel sends to the viewController object.
@@ -27,4 +28,9 @@ enum MovieListViewModelOutput: Equatable {
  */
 protocol MovieListViewModelDelegate: class {
     func handleViewModel(output: MovieListViewModelOutput)
+    func navigate(to route: MovieListViewRoute)
+}
+
+enum MovieListViewRoute {
+    case detail(MovieDetailViewModelProtocol)
 }
