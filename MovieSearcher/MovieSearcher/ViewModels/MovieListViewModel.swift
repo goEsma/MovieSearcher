@@ -43,7 +43,9 @@ final class MovieListViewModel: MovieListViewModelProtocol {
                 }
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.notify(.showEmptyList())
+                    if page == 1 {
+                        self.notify(.showEmptyList())
+                    }
                 }
             }
         }
