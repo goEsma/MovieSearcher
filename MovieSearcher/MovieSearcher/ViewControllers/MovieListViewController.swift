@@ -17,7 +17,7 @@ final class MovieListViewController: UIViewController, AlertDisplayer {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    private var pickerList = ["movie", "episode", "series"]
+    private var pickerList = ["", "movie", "episode", "series"]
 
     var viewModel: MovieListViewModelProtocol! {
         didSet {
@@ -149,18 +149,16 @@ extension MovieListViewController: UISearchBarDelegate {
             self.typePicker.isHidden = false
             searchBar.resignFirstResponder()
         }else {
+            self.typePicker.isHidden = true
             searchBar.becomeFirstResponder()
         }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.frame = CGRect(x: 0.0, y: -80.0, width: 0.0, height: 44.0)
         searchBar.resignFirstResponder()
         self.view.endEditing(true)
         searchBar.text = ""
-        if searchBar == typeSearchBar {
-            self.typePicker.isHidden = true
-        }
+        self.typePicker.isHidden = true
         
     }
     
