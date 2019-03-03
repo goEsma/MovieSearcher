@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MovieListViewController: UIViewController {
+final class MovieListViewController: UIViewController, AlertDisplayer {
     
     @IBOutlet weak var titleSearchBar: UISearchBar!
     @IBOutlet weak var yearSearchBar: UISearchBar!
@@ -38,8 +38,8 @@ final class MovieListViewController: UIViewController {
     
     @objc func searchButtonTapped() {
         guard let title = titleSearchBar.text, title != "" else {
-            print("error must enter title")
-            // Show an alert message.
+            let action = UIAlertAction(title: "OK", style: .default)
+            displayAlert(with: "Ops!", message: "You must enter a title.", actions: [action])
             return
         }
         let type = typeSearchBar.text
