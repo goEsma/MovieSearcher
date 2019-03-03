@@ -14,7 +14,7 @@ final class MockImdbService: ImdbServiceProtocol {
     var movies: [Movie] = []
     var movieDetail: MovieDetail = MovieDetail(title: "", year: "", genre: "", runTime: "", rated: "", director: "", plot: "", posterUrl: "")
     
-    func fetchMovies(title: String, year: String?, type: String?, completion: @escaping (Result<MovieListResponse>) -> Void) {
+    func fetchMovies(title: String, year: String?, type: String?, page:Int, completion: @escaping (Result<MovieListResponse>) -> Void) {
         completion(.success(MovieListResponse(movies: movies)))
     }
     

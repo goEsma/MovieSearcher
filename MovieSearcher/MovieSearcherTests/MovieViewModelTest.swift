@@ -31,7 +31,7 @@ class MovieViewModelTest: XCTestCase {
         service.movies = [movie1, movie2, movie3]
         
         //When:
-        viewModel.loadMovies(for: movie1.title, year: movie1.year, type: movie1.type)
+        viewModel.loadMovies(for: movie1.title, year: movie1.year, type: movie1.type, page: 1)
         
         //Then:
         XCTAssertEqual(view.outputs.count, 3)
@@ -50,7 +50,7 @@ class MovieViewModelTest: XCTestCase {
         let movie3 = try ResourceLoader.loadMovie(resource: .movie3)
 
         service.movies = [movie1, movie2, movie3]
-        viewModel.loadMovies(for: movie1.title, year: movie1.year, type: movie1.type)
+        viewModel.loadMovies(for: movie1.title, year: movie1.year, type: movie1.type, page:1)
         view.reset()
         
         // When:

@@ -16,11 +16,11 @@ struct MovieListResponse: Decodable {
     }
 
     let movies: [Movie]
-    let totalResult:String
+    var totalResult:String = "0"
     
-    init(movies: [Movie], totalResult:String) {
+    init(movies: [Movie]) {
         self.movies = movies
-        self.totalResult = totalResult
+        //self.totalResult = totalResult
     }
     
     public init(from decoder: Decoder) throws {
