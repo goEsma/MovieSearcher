@@ -190,19 +190,19 @@
 		76C4E0B7222A3E6500E1EDD4 /* MovieSearcher */ = {
 			isa = PBXGroup;
 			children = (
-				76C4E155222AF46E00E1EDD4 /* Views */,
-				76C4E14E222AEA8E00E1EDD4 /* Extensions */,
-				76C4E14B222AEA1D00E1EDD4 /* ViewModels */,
-				76C4E148222AE9AC00E1EDD4 /* Contracts */,
-				76C4E142222AE96500E1EDD4 /* Presentations */,
 				76C4E0ED222A441A00E1EDD4 /* App */,
 				76C4E10C222AA73100E1EDD4 /* Builders */,
+				76C4E148222AE9AC00E1EDD4 /* Contracts */,
+				76C4E14E222AEA8E00E1EDD4 /* Extensions */,
 				76C4E0E6222A427400E1EDD4 /* Models */,
 				76C4E0EC222A42E200E1EDD4 /* Network */,
+				76C4E142222AE96500E1EDD4 /* Presentations */,
 				76C4E0EB222A42DB00E1EDD4 /* Resources */,
 				76C4E0EA222A42C400E1EDD4 /* Storyboards */,
 				76C4E0EE222A442C00E1EDD4 /* Supporting Files */,
 				76C4E0E8222A428500E1EDD4 /* ViewControllers */,
+				76C4E14B222AEA1D00E1EDD4 /* ViewModels */,
+				76C4E155222AF46E00E1EDD4 /* Views */,
 			);
 			path = MovieSearcher;
 			sourceTree = "<group>";
