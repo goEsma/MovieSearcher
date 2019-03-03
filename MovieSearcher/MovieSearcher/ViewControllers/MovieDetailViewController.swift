@@ -20,6 +20,9 @@ class MovieDetailViewController: UIViewController, AlertDisplayer {
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var plot: UITextView!
     
+    @IBOutlet weak var posterHeightContraint: NSLayoutConstraint!
+    private let posterHeight:CGFloat = 180.0
+    
     //Will be injected upon creation of this class.
     var imdbId:String!
     var viewModel: MovieDetailViewModelProtocol!{
@@ -58,6 +61,12 @@ extension MovieDetailViewController: MovieDetailViewModelDelegate {
 
         if let url = URL(string: presentation.posterUrl){
             posterView.af_setImage(withURL: url)
+            
+            //animate poster height.
+            posterHeightContraint.constant = posterHeight
+            UIView.animate(withDuration: 1.0) {
+                self.view.layoutIfNeeded()
+            }
         }
     }
 }
